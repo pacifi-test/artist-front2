@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule } from '@nebular/theme';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { HttpClientModule } from '@angular/common/http';
+import { ServiceArtistService } from './service-artist.service';
 
 const routes: Routes = [
   {
@@ -15,6 +17,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
+  providers:[ServiceArtistService],
   declarations: [
     MainComponent
   ],
@@ -27,6 +30,8 @@ const routes: Routes = [
     NbEvaIconsModule,
     NbIconModule,
     RouterModule.forChild(routes),
+    HttpClientModule,
+    FormsModule
 
   ],
   exports: [
