@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { RouterModule, Routes } from '@angular/router';
-import { NbCardModule, NbInputModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule } from '@nebular/theme';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 const routes: Routes = [
   {
@@ -20,8 +22,12 @@ const routes: Routes = [
     CommonModule,
     NbCardModule,
     NbInputModule,
+    NbButtonModule,
+    ReactiveFormsModule,
+    NbEvaIconsModule,
+    NbIconModule,
+    RouterModule.forChild(routes),
 
-    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

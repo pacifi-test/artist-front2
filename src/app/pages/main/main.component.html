@@ -1,19 +1,22 @@
 <section class="container">
   <nb-card class="container__card">
-    <nb-card-header  >
+    <nb-card-header>
       Artista
     </nb-card-header>
-    <nb-card-body class="container__card--body">
-      <input type="text" nbInput placeholder="Nombre" fullWidth>
-      <input type="text" nbInput placeholder="Apellido" fullWidth>
-      <input type="text" nbInput placeholder="Correo" fullWidth>
-      <input type="text" nbInput placeholder="Edad" fullWidth>
-      <textarea name="description" id="description_id" cols="30" rows="10" nbInput fullWidth></textarea>
-
-
+    <nb-card-body class="container__card--body" [formGroup]="form">
+      <input type="text" nbInput placeholder="Nombre" fullWidth formControlName="first_name">
+      <input type="text" nbInput placeholder="Apellido" fullWidth formControlName="last_name">
+      <input type="text" nbInput placeholder="Correo" fullWidth formControlName="email">
+      <input type="number" nbInput placeholder="Edad" fullWidth formControlName="age">
+      <textarea name="description" id="description_id" cols="30" rows="10" nbInput fullWidth
+                formControlName="description"></textarea>
     </nb-card-body>
     <nb-card-footer>
-      Contenido de la tarjeta
+
+      <button nbButton status="success" [disabled]="form.invalid" (click)="send()">
+        <nb-icon icon="save-outline"></nb-icon>
+        Enviar
+      </button>
     </nb-card-footer>
   </nb-card>
 </section>
