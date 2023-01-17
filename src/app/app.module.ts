@@ -7,8 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
-import { NbAuthJWTToken, NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebular/auth';
-import { defaultSettingsAuth } from './auth.forms';
+import { NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebular/auth';
 
 @NgModule({
   declarations: [
@@ -19,38 +18,55 @@ import { defaultSettingsAuth } from './auth.forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({name: 'corporate'}),
-    NbLayoutModule,
     NbEvaIconsModule,
     HttpClientModule,
     NbAuthModule.forRoot({
       strategies: [
-
+        NbDummyAuthStrategy.setup({
+          name: 'dummy',
+        }),
         NbPasswordAuthStrategy.setup({
-          token: {
-            class: NbAuthJWTToken,
-            key: 'token'
-          },
-          name: 'email',
+          name: 'real',
           baseEndpoint: 'http://localhost:8000',
           login: {
-            endpoint: '/api-auth/login/',
-            method: 'post'
+            endpoint: '/api/token',
+            method: 'post',
+          },
+          register: {
+            endpoint: '/auth/sign-up',
+            method: 'post',
           },
           logout: {
-            endpoint: 'api-auth/logout/',
-            method: 'post'
+            endpoint: '/auth/sign-out',
+            method: 'post',
           },
           requestPass: {
-            endpoint: '/api/token',
-            method: 'post'
+            endpoint: '/auth/request-pass',
+            method: 'post',
           },
           resetPass: {
-            endpoint: '/api/token/refresh',
-            method: 'post'
+            endpoint: '/auth/reset-pass',
+            method: 'post',
           },
+
+
         })
       ],
-      forms: {defaultSettingsAuth},
+      forms: {
+        login: {
+          redirectDelay: 0, // delay before redirect after a successful login, while success message is shown to the user
+          strategy: 'dummy',  // strategy id key.
+          rememberMe: true,   // whether to show or not the `rememberMe` checkbox
+          showMessages: {     // show/not show success/error messages
+            success: true,
+            error: true,
+          },
+          redirect: {
+            success: '/main',
+            failure: null
+          }
+        },
+      },
     }),
   ],
   providers: [],

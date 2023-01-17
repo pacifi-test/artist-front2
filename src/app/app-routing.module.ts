@@ -7,17 +7,55 @@ import {
   NbRegisterComponent,
   NbRequestPasswordComponent, NbResetPasswordComponent
 } from '@nebular/auth';
-import { NgxAuthModule } from './auth/auth.module';
+import { ValidationLoginGuard } from './guards/validation-login.guard';
+import { ValidationAuthGuard } from './guards/validation-auth.guard';
 
 const routes: Routes = [
   {
     path: 'main',
-    loadChildren: () => import("./pages/main/main.module").then(m => m.MainModule)
+    loadChildren: () => import("./pages/container/container.module").then(m => m.ContainerModule),
+    canActivate: [ValidationLoginGuard]
   },
+
   {
     path: 'auth',
-    loadChildren: () => import("./auth/auth.module").then(m => m.NgxAuthModule)
+    component: NbAuthComponent,
+    canActivate: [ValidationAuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'prefix'
+      },
+      {
+        path: 'login',
+        component: NbLoginComponent,
+      },
+      {
+        path: 'register',
+        component: NbRegisterComponent,
+      },
+      {
+        path: 'logout',
+        component: NbLogoutComponent,
+      },
+      {
+        path: 'request-password',
+        component: NbRequestPasswordComponent,
+      },
+      {
+        path: 'reset-password',
+        component: NbResetPasswordComponent,
+      },
+      {
+        path: 'main',
+        redirectTo: '/main',
+        pathMatch: 'full'
+      }
+
+    ],
   },
+
   {
     path: '**',
     redirectTo: 'main'
