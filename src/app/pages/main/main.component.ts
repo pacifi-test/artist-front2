@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormData } from '../../interfaces/form.interface';
-import { ServiceArtistService } from './service-artist.service';
+import { ArtistService } from './services/artist.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private artistService: ServiceArtistService
+    private artistService: ArtistService
   ) {
     this.form = fb.group<FormData>({
       first_name: fb.control<string | null>(null, Validators.required),
@@ -30,7 +30,6 @@ export class MainComponent implements OnInit {
 
   public send(): void {
     console.log(this.form?.value);
-    alert(`Bienvenido ${this.form?.value.first_name} `);
     this.artistService.save({
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,

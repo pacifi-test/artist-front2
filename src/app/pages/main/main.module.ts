@@ -6,7 +6,7 @@ import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule } from '@nebu
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
-import { ServiceArtistService } from './service-artist.service';
+
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  providers:[ServiceArtistService],
+  providers: [],
   declarations: [
     MainComponent
   ],
