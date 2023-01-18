@@ -16,12 +16,8 @@ import {
 } from '@nebular/auth';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 import { RoleProviderService } from './services/role.provider.service';
+import { of } from 'rxjs';
 
-class PayloadDummy extends NbAuthSimpleToken {
-  protected override payload = {
-    role: 'test'
-  };
-}
 
 @NgModule({
   declarations: [
@@ -37,8 +33,11 @@ class PayloadDummy extends NbAuthSimpleToken {
     HttpClientModule,
     NbSecurityModule.forRoot({
       accessControl: {
-        test: {
-          view: ['main', 'logut'],
+        Venta: {
+          view: ['user', 'logout'],
+        },
+        Admin: {
+          view: ['main', 'logout', 'form'],
         },
 
       },

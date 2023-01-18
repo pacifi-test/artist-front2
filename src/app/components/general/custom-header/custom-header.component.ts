@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthService, NbTokenService } from '@nebular/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,13 +14,12 @@ export class CustomHeaderComponent implements OnInit {
 
   constructor(
     private authService: NbAuthService,
-    private router: Router
+    private router: Router,
+    protected tokenService: NbTokenService
   ) {
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken | any) => {
-        console.log("Tokeeeeeeen", token)
-        console.log("Tokennnn payload atr", token.payload)
         console.log("Tokeeeeen paylad func", token.getPayload())
         if (token.isValid()) {
           this.user = token.getPayload().user; // here we receive a payload from the token and assigns it to our `user` variable
@@ -37,9 +36,12 @@ export class CustomHeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout('real').subscribe(res => {
-      res.isSuccess() && this.router.navigate(['/auth']);
-    });
+    // this.authService.logout('real').subscribe(res => {
+    //   res.isSuccess() && this.router.navigate(['/auth']);
+    // });
+    this.tokenService.clear();
+    this.router.navigate(['/auth']);
+
   }
 
 }

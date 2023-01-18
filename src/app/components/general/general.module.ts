@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomHeaderComponent } from './custom-header/custom-header.component';
 import { NbButtonModule, NbUserModule } from '@nebular/theme';
+import { NbSecurityModule } from '@nebular/security';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { NbButtonModule, NbUserModule } from '@nebular/theme';
   imports: [
     CommonModule,
     NbUserModule,
-    NbButtonModule
+    NbButtonModule,
+    NbSecurityModule
   ],
   exports: [
     CustomHeaderComponent
