@@ -7,19 +7,42 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
-import { NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebular/auth';
+import {
+  NbAuthJWTToken,
+  NbAuthModule,
+  NbAuthSimpleToken,
+  NbDummyAuthStrategy,
+  NbPasswordAuthStrategy
+} from '@nebular/auth';
+import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
+import { RoleProviderService } from './services/role.provider.service';
+
+class PayloadDummy extends NbAuthSimpleToken {
+  protected override payload = {
+    role: 'test'
+  };
+}
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({name: 'corporate'}),
     NbEvaIconsModule,
     HttpClientModule,
+    NbSecurityModule.forRoot({
+      accessControl: {
+        test: {
+          view: ['main', 'logut'],
+        },
+
+      },
+    }),
     NbAuthModule.forRoot({
       strategies: [
         NbDummyAuthStrategy.setup({
@@ -27,6 +50,10 @@ import { NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebu
         }),
         NbPasswordAuthStrategy.setup({
           name: 'real',
+          token: {
+            class: NbAuthJWTToken,
+            key: 'access',
+          },
           baseEndpoint: 'http://localhost:8000',
           login: {
             endpoint: '/api/token',
@@ -55,7 +82,7 @@ import { NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebu
       forms: {
         login: {
           redirectDelay: 0, // delay before redirect after a successful login, while success message is shown to the user
-          strategy: 'dummy',  // strategy id key.
+          strategy: 'real',  // strategy id key.
           rememberMe: true,   // whether to show or not the `rememberMe` checkbox
           showMessages: {     // show/not show success/error messages
             success: true,
@@ -69,7 +96,10 @@ import { NbAuthModule, NbDummyAuthStrategy, NbPasswordAuthStrategy } from '@nebu
       },
     }),
   ],
-  providers: [],
+  providers: [{
+    provide: NbRoleProvider,
+    useClass: RoleProviderService
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
