@@ -49,3 +49,162 @@
     <button nbButton shape="round" status="success" outline>Cancelar</button>
   </nb-card-footer>
 </nb-card>
+
+
+<nb-reveal-card>
+  <nb-card-front>
+    <nb-card>
+      <nb-card-body>
+        este es el front
+      </nb-card-body>
+    </nb-card>
+  </nb-card-front>
+  <nb-card-back>
+    <nb-card>
+      <nb-card-body>
+        Es es el card del back
+      </nb-card-body>
+    </nb-card>
+  </nb-card-back>
+</nb-reveal-card>
+
+<nb-accordion multi>
+  <nb-accordion-item>
+    <nb-accordion-item-header>
+      Product 1
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci animi assumenda at aut consequatur delectus
+      doloremque doloribus ducimus est fugiat illo, ipsum minus nam non numquam provident rem repudiandae?
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+
+  <nb-accordion-item>
+    <nb-accordion-item-header>
+      Product Details 2
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi, blanditiis consequuntur corporis cum
+      debitis, dolores earum fuga illo libero natus neque nobis officiis placeat porro quo repudiandae voluptas
+      voluptate.
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+
+  <nb-accordion-item>
+    <nb-accordion-item-header>
+      Product Details 3
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, cum delectus dolor expedita nobis quae quis
+      quod reprehenderit suscipit ut velit voluptate? Dicta iste officia quasi quia rerum saepe sequi!
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+
+  <nb-accordion-item>
+    <nb-accordion-item-header>
+      Product Details 4
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur culpa cum delectus, distinctio
+      doloremque dolorum eligendi est explicabo facere id libero molestiae nobis quas qui, quia repellendus sed sint.
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+
+  <nb-accordion-item>
+    <nb-accordion-item-header>
+      Product Details 5
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut commodi corporis cum dolore dolorum eligendi, enim
+      eum ex exercitationem labore, laboriosam magnam maxime nostrum perspiciatis quos tempore totam ullam, veniam?
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>
+
+<nb-card>
+  <nb-card-body>
+    <nb-stepper orientation="horizontal">
+
+      <nb-step [label]="step1">
+        <ng-template #step1>
+          Paso 1
+        </ng-template>
+        <h4>
+          Step Content #1
+        </h4>
+        <p class="lorem">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae consequuntur cumque, delectus doloribus
+          eius incidunt neque numquam provident quaerat quam quidem soluta tempora voluptate voluptatem. Fugiat harum
+          perspiciatis possimus!
+        </p>
+        <button nbButton disabled nbStepperPrevious>Prev</button>
+        <button nbButton nbStepperNext>Next</button>
+      </nb-step>
+      <nb-step [label]="step2">
+        <ng-template #step2>Paso 2</ng-template>
+        <h4>Step Content #2</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur delectus id maiores quo reprehenderit
+          velit veniam! Consequatur dignissimos, earum libero mollitia natus nesciunt, numquam omnis recusandae rem
+          sequi sunt, ullam.
+        </p>
+        <button nbButton nbStepperPrevious>Prev</button>
+        <button nbButton nbStepperNext>Next</button>
+      </nb-step>
+      <nb-step [label]="step3">
+        <ng-template #step3>Paso 3</ng-template>
+        <h4>Step Content #3</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur delectus id maiores quo reprehenderit
+          velit veniam! Consequatur dignissimos, earum libero mollitia natus nesciunt, numquam omnis recusandae rem
+          sequi sunt, ullam.
+        </p>
+        <button nbButton nbStepperPrevious>Prev</button>
+        <button nbButton nbStepperNext>Next</button>
+      </nb-step>
+      <nb-step [label]="step4">
+        <ng-template #step4>Paso 4</ng-template>
+        <h4>Step Content #4</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur delectus id maiores quo reprehenderit
+          velit veniam! Consequatur dignissimos, earum libero mollitia natus nesciunt, numquam omnis recusandae rem
+          sequi sunt, ullam.
+        </p>
+        <button nbButton nbStepperPrevious>Prev</button>
+        <button nbButton disabled nbStepperNext>Next</button>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>
+
+
+<button nbButton [nbPopover]="popOver">
+  Clickme
+</button>
+
+<ng-template #popOver>
+  <nb-card>
+    <nb-card-body>
+      <button nbButton status="primary">Aceptar</button>
+      <button nbButton status="success">Cancelar</button>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+
+<br>
+<br>
+<br>
+
+<!--<ng-template #dialog let-data let-ref="dialogRef">-->
+<!--  <nb-card>-->
+<!--    <nb-card-header>Templage dialog</nb-card-header>-->
+<!--    <nb-card-body>{{data}}</nb-card-body>-->
+<!--    <nb-card-footer>-->
+<!--      <button nbButton (click)="ref.close()">Close</button>-->
+<!--    </nb-card-footer>-->
+<!--  </nb-card>-->
+<!--</ng-template>-->
+
+<!--<button nbButton (click)="open(dialog)">Open Dialog</button>-->
+<button nbButton (click)="open()">Open Dialog</button>

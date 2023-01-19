@@ -4,18 +4,22 @@ import { CommonModule } from '@angular/common';
 import { FormRoutingModule } from './form-routing.module';
 import { FormComponent } from './form.component';
 import {
+  NbAccordionModule,
   NbButtonModule,
   NbCardModule,
-  NbCheckboxModule,
-  NbInputModule,
+  NbCheckboxModule, NbDialogModule,
+  NbInputModule, NbPopoverModule,
   NbProgressBarModule,
-  NbSelectModule
+  NbSelectModule, NbStepperModule, NbToastrModule,
+
 } from '@nebular/theme';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
   declarations: [
-    FormComponent
+    FormComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,13 @@ import {
     NbSelectModule,
     NbButtonModule,
     NbProgressBarModule,
-    NbCheckboxModule
+    NbCheckboxModule,
+    NbAccordionModule,
+    NbStepperModule,
+    NbPopoverModule,
+    NbDialogModule.forRoot(),
+
   ]
 })
-export class FormModule { }
+export class FormModule {
+}
