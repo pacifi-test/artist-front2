@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NbAuthJWTToken, NbAuthService, NbTokenService } from '@nebular/auth';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'app-custom-header',
@@ -11,19 +13,26 @@ export class CustomHeaderComponent implements OnInit {
   user = {
     name: 'Prueba Angular'
   };
+  currentTheme = new FormControl('')
+  themes = [
+    'default',
+    'dark',
+    'cosmic',
+    'corporate',
+  ]
 
   constructor(
     private authService: NbAuthService,
     private router: Router,
-    protected tokenService: NbTokenService
+    protected tokenService: NbTokenService,
+    private themeService: NbThemeService
   ) {
+    this.currentTheme.setValue(this.themeService.currentTheme);
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken | any) => {
-        console.log("Tokeeeeen paylad func", token.getPayload())
         if (token.isValid()) {
           this.user = token.getPayload().user; // here we receive a payload from the token and assigns it to our `user` variable
-
         }
         this.authService.onAuthenticationChange().subscribe(res => {
 
@@ -44,4 +53,9 @@ export class CustomHeaderComponent implements OnInit {
 
   }
 
+  changeTheme(theme: string) {
+    this.themeService.changeTheme(theme);
+  }
+
 }
+

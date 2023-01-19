@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomHeaderComponent } from './custom-header/custom-header.component';
-import { NbButtonModule, NbUserModule } from '@nebular/theme';
+import { NbButtonModule, NbSelectModule, NbUserModule } from '@nebular/theme';
 import { NbSecurityModule } from '@nebular/security';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,10 @@ import { NbSecurityModule } from '@nebular/security';
     CommonModule,
     NbUserModule,
     NbButtonModule,
-    NbSecurityModule
+    NbSecurityModule,
+    NbSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CustomHeaderComponent

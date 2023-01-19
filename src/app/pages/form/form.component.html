@@ -1,0 +1,51 @@
+<nb-card class="card" status="primary" accent="danger">
+  <nb-card-header class="card__header">
+    <h2>Mi Formulario</h2>
+  </nb-card-header>
+  <!--  Simple form-->
+  <nb-card-body action="" class="card__body">
+    <input nbInput type="text" placeholder="Nombre">
+    <input nbInput type="text" placeholder="Apellido">
+    <!--    <select  name="select">-->
+    <!--      <option *ngFor="let o of listSelect" [value]="o">{{o}}</option>-->
+    <!--      <optgroup label="SauroPods">-->
+    <!--        <option>Diplodocus</option>-->
+    <!--        <option>Saltasaurus</option>-->
+    <!--        <option>Apatosaurus</option>-->
+    <!--      </optgroup>-->
+    <!--    </select>-->
+
+    <nb-select status="primary" filled shape="round" size="small" #selectNebular>
+      <nb-option *ngFor="let o of listSelect" [value]="o">{{o}}</nb-option>
+      <nb-option-group title="SauroPods">
+        <nb-option>Diplodocus</nb-option>
+        <nb-option>Saltasaurus</nb-option>
+        <nb-option>Apatosaurus</nb-option>
+      </nb-option-group>
+    </nb-select>
+    <div class="card__body--grid">
+      <label for="file">File Proges</label>
+      <!--      <progress id="file" max="100" value="70">70%</progress>-->
+      <nb-progress-bar id="file" [value]="50" status="success" size="tiny" [displayValue]="true"> Custom
+      </nb-progress-bar>
+    </div>
+    <textarea nbInput name="des" id="desc" cols="30" rows="5" placeholder="Description" value="Descripción"></textarea>
+    <fieldset>
+      <legend>Chose Your Monster features:</legend>
+      <div>
+        <!--        <input type="checkbox" id="scales" name="scales" checked>-->
+        <!--        <label for="scales">Scales</label>-->
+        <nb-checkbox status="info">Valor 1</nb-checkbox>
+      </div>
+      <div>
+        <!--        <input type="checkbox" id="horns" name="horns">-->
+        <!--        <label for="horns">Horns</label>-->
+        <nb-checkbox status="danger">Valor 2</nb-checkbox>
+      </div>
+    </fieldset>
+  </nb-card-body>
+  <nb-card-footer class="card__footer">
+    <button nbButton size="giant" status="primary">Enviar</button>
+    <button nbButton shape="round" status="success" outline>Cancelar</button>
+  </nb-card-footer>
+</nb-card>

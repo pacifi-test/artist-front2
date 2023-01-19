@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
 import {
@@ -16,8 +16,6 @@ import {
 } from '@nebular/auth';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 import { RoleProviderService } from './services/role.provider.service';
-import { of } from 'rxjs';
-
 
 @NgModule({
   declarations: [
@@ -31,15 +29,18 @@ import { of } from 'rxjs';
     NbThemeModule.forRoot({name: 'corporate'}),
     NbEvaIconsModule,
     HttpClientModule,
+    NbToastrModule.forRoot(),
     NbSecurityModule.forRoot({
       accessControl: {
+        Dashboard: {
+          view: ['dashboard',]
+        },
         Venta: {
-          view: ['user', 'logout'],
+          view: ['profile', 'form'],
         },
         Admin: {
-          view: ['main', 'logout', 'form'],
+          view: [ 'logout', 'form',],
         },
-
       },
     }),
     NbAuthModule.forRoot({

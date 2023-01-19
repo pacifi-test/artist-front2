@@ -1,5 +1,10 @@
+
 .container {
   &__card {
+    &--header {
+      color: var(--color-primary-500);
+    }
+
     &--body {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -13,3 +18,4 @@
     }
   }
 }
+

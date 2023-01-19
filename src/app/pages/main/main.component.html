@@ -1,6 +1,6 @@
 <section class="container">
   <nb-card class="container__card">
-    <nb-card-header>
+    <nb-card-header class="container__card--header">
       Artista
     </nb-card-header>
     <nb-card-body class="container__card--body" [formGroup]="form">
@@ -19,4 +19,6 @@
       </button>
     </nb-card-footer>
   </nb-card>
+  <button nbButton (click)="showToast()">Top Right</button>
+
 </section>
